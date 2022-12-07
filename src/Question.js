@@ -1,27 +1,23 @@
 import React from "react";
 
-function Question({ question, changeQuestion }) {
+function Question({ question, answer, displayNext }) {
   return (
     <div>
       <h5 className="text-center mt-4">{question.question}</h5>
       <ul>
-        {question.choices.map((choice, i) => {
+        {question.options.map((option, i) => {
           return (
             <li
               key={i}
-              className="mt-3 w-100 btn  btn-light"
-              onClick={() => changeQuestion(i)}
+              className={`mt-3 w-100 btn  
+              ${answer && answer.answer === i ? "btn-secondary" : "btn-light"}`}
+              onClick={() => displayNext(i)}
             >
-              {choice}
+              {option}
             </li>
           );
         })}
       </ul>
-      <div className="d-flex justify-content-center mt-4">
-        <button className="btn btn-dark" onClick={() => changeQuestion(null)}>
-          Skip
-        </button>
-      </div>
     </div>
   );
 }
